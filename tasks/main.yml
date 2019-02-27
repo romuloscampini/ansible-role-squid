@@ -10,6 +10,12 @@
     name: squid
     state: present
 
+- name: Setup squid auto-start & start
+  service:
+    name: squid
+    enabled: yes
+    state: started
+
 - name: Create squid config file
   template:
     src: squid/squid.conf
