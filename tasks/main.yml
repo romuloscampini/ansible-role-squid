@@ -1,0 +1,20 @@
+---
+# - name: Install EPEL
+#   package:
+#     name: epel-release
+#     state: present
+#   when: ansible_distribution == "CentOS" or ansible_distribution=="RedHat"
+
+- name: Install Squid
+  package:
+    name: squid
+    state: present
+
+- name: Create squid config file
+  template:
+    src: squid/squid.conf
+    dest: "/etc/squid/squid.conf"
+    owner: root
+    group: squid
+  notify:
+    - restart squid
